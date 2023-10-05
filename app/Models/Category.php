@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Taches extends Model
+class Category extends Model
 {
     use HasFactory;
 
-    protected $table = "tache";
+    protected $fillable = ['name'];
 
-    protected $fillable = ["type", "difficulte"];
+    protected function mosts(){
+        return $this->hasMany(Most::class);
+    }
 }

@@ -4,12 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Vendeurs extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
-    protected $table2 = "Vendeurs";
+    //protected $table2 = "Vendeurs";
 
-    protected $fillable2 = ["nom", "email", "password"];
+    protected $fillable = ['nom', 'email', 'password'];
+
+    public function latestComment()
+    {
+        return $this->hasOne(Commment::class)->latestOfMany();
+    }
 }
